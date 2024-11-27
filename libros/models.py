@@ -8,7 +8,7 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     description = models.TextField()
     publication_date = models.DateField()
-    cover_image = models.ImageField(upload_to='book_covers', null=True, blank=True)
+   
 
 class Review(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews')
