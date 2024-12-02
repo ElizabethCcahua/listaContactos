@@ -8,7 +8,9 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     description = models.TextField()
     publication_date = models.DateField()
-   
+    
+def __str__(self):
+        return f"{self.title} by {self.author}"
 
 class Review(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews')
@@ -16,4 +18,4 @@ class Review(models.Model):
     rating = models.PositiveIntegerField(choices=[(i, i) for i in range(1, 6)])
     text = models.TextField()
     comments = models.TextField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True) 
