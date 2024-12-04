@@ -3,7 +3,7 @@ from .forms import ReviewForm
 from .forms import BookForm
 from .models import Book
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import render, get_object_or_404
 
 # Vista para agregar un nuevo libro
 @login_required
@@ -40,3 +40,8 @@ def agregar_review(request, libro_id):
         form = ReviewForm()
 
     return render(request, 'libros/agregar_review.html', {'form': form, 'libro': libro})
+
+# Vista para ver el detalle de un libro
+def detalle_libro(request, libro_id):
+    libro = get_object_or_404(Book, id=libro_id)
+    return render(request, 'libros/detalle_libro.html', {'libro': libro})

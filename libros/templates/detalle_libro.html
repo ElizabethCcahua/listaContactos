@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Libro - {{ libro.title }}</title>
+</head>
+<body>
+    <h1>{{ libro.title }} por {{ libro.author }}</h1>
+    <p>{{ libro.description }}</p>
+    <p>Fecha de publicación: {{ libro.publication_date }}</p>
+    <a href="{% url 'agregar_review' libro.id %}">Agregar reseña</a>
+</body>
+</html>
