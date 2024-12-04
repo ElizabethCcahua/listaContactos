@@ -19,3 +19,6 @@ class Review(models.Model):
     text = models.TextField()
     comments = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True) 
+
+    def __str__(self):
+        return f"Reseña de {self.user.username} para {self.book.title}"
