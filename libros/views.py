@@ -28,7 +28,7 @@ def lista_libros(request):
 @login_required
 def agregar_review(request, libro_id):
     libro = Book.objects.get(id=libro_id)
-    
+
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -44,4 +44,5 @@ def agregar_review(request, libro_id):
 # Vista para ver el detalle de un libro
 def detalle_libro(request, libro_id):
     libro = get_object_or_404(Book, id=libro_id)
+    reseñas = libro.reviews.all()
     return render(request, 'libros/detalle_libro.html', {'libro': libro})

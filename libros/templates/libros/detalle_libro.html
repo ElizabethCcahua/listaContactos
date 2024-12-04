@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Libros</title>
+    <title>{{ libro.title }} - Detalles</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,14 +24,14 @@
             color: #2c3e50;
             margin-bottom: 20px;
         }
-        .libros-lista {
+        .reseñas ul {
             list-style-type: none;
             padding: 0;
         }
-        .libros-lista li {
-            padding: 12px;
+        .reseñas li {
             background-color: #f9fbfd;
-            margin-bottom: 10px;
+            padding: 15px;
+            margin: 10px 0;
             border-radius: 6px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -46,15 +46,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>Lista de Libros</h1>
-        <ul class="libros-lista">
-            {% for libro in libros %}
-                <li>{{ libro.title }} por {{ libro.author }}</li>
-            {% endfor %}
-        </ul>
-        <div>
-            <p><a href="{% url 'agregar_libro' %}">Agregar un nuevo libro</a></p>
+        <h1>{{ libro.title }} por {{ libro.author }}</h1>
+        <p>{{ libro.description }}</p>
+        <div class="reseñas">
+            <h2>Reseñas:</h2>
+            <ul>
+                {% for reseña in reseñas %}
+                    <li>
+                        <strong>{{ reseña.user.username }}:</strong>
+                        {{ reseña.text }} ({{ reseña.rating }} estrellas)
+                        <p>{{ reseña.comments }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
+        <p><a href="{% url 'lista_libros' %}">Volver a la lista de libros</a></p>
     </div>
 </body>
 </html>
